@@ -1,16 +1,11 @@
 from datetime import datetime
-import mysql.connector
+import usuarios.conexion as conexion
 import hashlib
-database = mysql.connector.connect(
-    host="localhost",
-    port="8889",
-    user="root",
-    password="root",
-    database = "master_python"
 
-)
+connect = conexion.conectar()
+database = connect[0]
+cursor = connect[1]
 
-cursor = database.cursor(buffered=True)#buffered = True permite hacer muchas consultas con el mismo cursor
 class Usuario:
     def __init__(self, nombre, apellidos, email, password):
         self.nombre = nombre
