@@ -11,7 +11,7 @@ class Opciones:
         usuario = modelo.Usuario(nombre, apellidos, email, password)
         inscripcion = usuario.registrar()
         
-        if inscripcion:
+        if inscripcion[0] >= 1:
             print(f"Todo ha salido perfecto, se ha registrado el usuario con el email {email}")
         else: 
             print("Ocurrio un error en el registro")
