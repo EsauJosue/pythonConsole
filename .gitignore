@@ -1,5 +1,8 @@
 # Carpetas
-/__pycache__
+usuarios/__pycache__/**
 
 #Archivos
-__init__.py
+/__init__.py
+
+#Extenciones
+*.pyc
