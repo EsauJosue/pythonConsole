@@ -1,3 +1,12 @@
+import mysql.connector
+database = mysql.connector.connect(
+    host="localhost",
+    port="8889",
+    user="root",
+    password="root",
+    database = "master_python"
+
+)
 class Usuario:
     def __init__(self, nombre, apellidos, email, password):
         self.nombre = nombre
