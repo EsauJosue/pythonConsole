@@ -1,4 +1,5 @@
 import usuarios.usuario as modelo
+import notas.acciones
 
 class Opciones:
     def registro(self):
@@ -19,5 +20,47 @@ class Opciones:
     
     def login(self):
         print("Vale!! Identifícate en el sistema...")
-        email = input('Cuál es tu email: ')
-        password = input('Ingresa una contraseña: ')
+        try:
+            email = input('Cuál es tu email: ')
+            password = input('Ingresa una contraseña: ')
+            usuario = modelo.Usuario('', '',email,password )
+            login = usuario.identificar()
+            print(login)
+            if email == login[3]:
+                print(f"Bienvenido {login[1]} te has registrado el {login[5]}")
+                self.proximasAcciones(login)
+        except Exception as e:
+            print(type(e))
+            print(type(e).__name__)
+            print(f"Login incorrecto, intentalo nuevamente")
+    
+    def proximasAcciones(self, usuario):
+        print("""
+            Aciones disponibles: 
+              - Crear nota (crear)
+              - Mostrar tus notas (mostrar)
+              - Eliminar nota (eliminar)
+              - Salir (salir)
+
+            """)
+        accion = input("Que quieres hacer: ")
+        hazEl = notas.acciones.Acciones()
+
+        if accion == "crear":
+            print("Vamos a crear")
+            hazEl.crear(usuario)
+
+            self.proximasAcciones(usuario)
+        elif accion == "mostrar":
+            hazEl.mostrar(usuario)
+            self.proximasAcciones(usuario)
+
+        elif accion == "eliminar":
+            hazEl.borrar(usuario)
+            self.proximasAcciones(usuario)
+
+        elif accion == "salir":
+            print(f" Ok {usuario[1]}, hasta pronto")
+            exit()
+
+        return None
